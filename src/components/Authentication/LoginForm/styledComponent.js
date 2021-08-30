@@ -4,8 +4,9 @@ const LoginFormMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: black;
-  min-height: 100vh;
   padding: 20px;
+  min-height: 100vh;
+
   @media screen and (min-width: 768px) {
     background-image: url('https://res.cloudinary.com/delguky36/image/upload/v1630299528/netfilx_1_hekvjj.png');
     background-size: cover;
@@ -23,30 +24,45 @@ const FormContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
-  //   height: 80vh;
+  width: 100%;
+  margin-top: 30px;
   @media screen and (min-width: 768px) {
+    margin-top: 0px;
+    flex-grow: 1;
   }
 `
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: 450px;
-  min-height: 400px;
+  align-items: flex-start;
+  width: 100%;
   background: #0c0b10;
   opacity: 0.8;
   border-radius: 8px;
+  @media screen and (min-width: 768px) {
+    align-items: center;
+    min-width: 450px;
+    max-width: 500px;
+    padding: 48px;
+  }
 `
 const FormHeading = styled.h1`
   color: #ffffff;
+  font-size: 32px;
+  font-weight: 600;
+  font-family: 'HK Grotesk';
+  line-height: 40px;
+  margin-top: 16px;
 `
 const LabelInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  width: 100%;
 
-  width: 80%;
+  @media screen and (min-width: 768px) {
+    width: auto;
+  }
 `
 const Label = styled.label`
   color: #ffffff;
@@ -72,21 +88,39 @@ const Input = styled.input`
   font-weight: normal;
   border: none;
   outline: none;
+  @media screen and (min-width: 768px) {
+    width: 360px;
+  }
 `
 const ErrorMessage = styled.p`
+  font-size: 14px;
+  line-height: 16px;
   color: #fb923c;
 `
-const ButtonContainer = styled.div``
+const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    width: auto;
+    margin-bottom: 16px;
+  }
+`
 const Button = styled.button`
   height: 40px;
   background: #e50914;
   color: #ffffff;
   font-family: 'Roboto';
   font-weight: bold;
-  padding: 8px 20px;
   border-radius: 4px;
   border: none;
   outline: none;
+  align-self: stretch;
+  cursor: pointer;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    padding: 8px 20px;
+  }
 `
 
 export {

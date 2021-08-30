@@ -18,7 +18,7 @@ class LoginForm extends Component {
   state = {
     username: '',
     password: '',
-    errorMessage: 'asdf',
+    errorMessage: '',
   }
 
   onChangeUsername = event => {
@@ -36,20 +36,32 @@ class LoginForm extends Component {
   onFormSubmit = async event => {
     event.preventDefault()
     const {username, password} = this.state
-    const option = {username, password}
-    const url = ''
-    const response = await fetch(url, option)
-    const responseData = await response.data()
-    Cookies.set('jwt_token', responseData, {expires: 1})
-    const {history} = this.props
+    const userDetails = {
+      username,
+      password,
+      request_token: '2269fe0f38a2fbb99986265f5e506dc6ca670e06',
+    }
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+      headers: {'Content-type': 'application/json'},
+    }
+
+    const url =
+      'https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=eca1bcc11e31c4033d638b8041720f6f'
+    const response = await fetch(url, options)
+
     if (response.ok) {
       this.setState({
         errorMessage: '',
       })
+      const responseData = await response.json()
+      Cookies.set('jwt_token', responseData, {expires: 1})
+      const {history} = this.props
       history.replace('/home')
     } else {
       this.setState({
-        errorMessage: response.errorMessage,
+        errorMessage: 'Please enter a valid Email and Password',
       })
     }
   }
@@ -64,15 +76,23 @@ class LoginForm extends Component {
             <FormHeading>Sign in</FormHeading>
             <LabelInputContainer>
               <Label>USERNAME</Label>
-              <Input value={username} onChange={this.onChangeUsername} />
+              <Input
+                value={username}
+                onChange={this.onChangeUsername}
+                type="text"
+              />
             </LabelInputContainer>
             <LabelInputContainer>
               <Label>PASSWORD</Label>
-              <Input value={password} onChange={this.onChangePassword} />
+              <Input
+                value={password}
+                onChange={this.onChangePassword}
+                type="password"
+              />
               {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             </LabelInputContainer>
             <ButtonContainer>
-              <Button type="button">Sign in</Button>
+              <Button type="submit">Sign in</Button>
             </ButtonContainer>
           </Form>
         </FormContainer>
