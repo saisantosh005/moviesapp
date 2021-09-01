@@ -55,7 +55,6 @@ class LoginForm extends Component {
         errorMessage: '',
       })
       const responseData = await response.json()
-      console.log(responseData)
       Cookies.set('jwt_token', responseData.request_token, {expires: 1})
       const {history} = this.props
       history.replace('/')
