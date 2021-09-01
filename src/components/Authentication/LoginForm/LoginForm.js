@@ -39,14 +39,13 @@ class LoginForm extends Component {
     const userDetails = {
       username,
       password,
-      request_token: '2269fe0f38a2fbb99986265f5e506dc6ca670e06',
+      request_token: '4fd11d7c36da6be6c623735a44d64cfb7a302ecd',
     }
     const options = {
       method: 'POST',
       body: JSON.stringify(userDetails),
       headers: {'Content-type': 'application/json'},
     }
-
     const url =
       'https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=eca1bcc11e31c4033d638b8041720f6f'
     const response = await fetch(url, options)
@@ -56,9 +55,10 @@ class LoginForm extends Component {
         errorMessage: '',
       })
       const responseData = await response.json()
-      Cookies.set('jwt_token', responseData, {expires: 1})
+      console.log(responseData)
+      Cookies.set('jwt_token', responseData.request_token, {expires: 1})
       const {history} = this.props
-      history.replace('/home')
+      history.replace('/')
     } else {
       this.setState({
         errorMessage: 'Please enter a valid Email and Password',
