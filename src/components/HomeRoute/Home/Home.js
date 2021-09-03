@@ -11,10 +11,59 @@ import {
   BannerSectionButton,
   ShadowDiv,
   TrendingSectionContainer,
+  SlickHeaderText,
 } from './styledComponent'
+import SlickSection from '../SlickContainer/SlickContainer'
+import Footer from '../../Footer/Footer'
 
+const token = 'eca1bcc11e31c4033d638b8041720f6f'
 class Home extends Component {
-  state = {}
+  state = {
+    trendingList: [],
+    topRatedList: [],
+  }
+
+  componentDidMount() {
+    this.getTrendingList()
+    this.getTopRatedList()
+  }
+
+  getTrendingList = async () => {
+    const url = `https://api.themoviedb.org/3/trending/all/week?api_key=${token}`
+    const response = await fetch(url)
+
+    if (response.ok) {
+      const responseData = await response.json()
+      const trendingList = responseData.results
+      const responseList = trendingList.map(eachItem => ({
+        id: eachItem.id,
+        url: eachItem.backdrop_path,
+      }))
+      this.setState({
+        trendingList: responseList,
+      })
+    }
+  }
+
+  getTopRatedList = async () => {
+    const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${token}&language=en-US`
+
+    const response = await fetch(url)
+
+    if (response.ok) {
+      const responseData = await response.json()
+      const trendingList = responseData.results
+      const responseList = trendingList.map(eachItem => ({
+        id: eachItem.id,
+        url: eachItem.backdrop_path,
+      }))
+      this.setState({
+        topRatedList: responseList,
+      })
+    }
+  }
+
+  getOriginals = async () => {}
 
   renderBannerSection = () => (
     <BannerSectionContainer>
@@ -31,14 +80,20 @@ class Home extends Component {
   )
 
   render() {
-    // Cookies.set('jwt_token', responseData, {expires: 1})
+    const {trendingList, topRatedList} = this.state
+    console.log(topRatedList)
 
-    console.log(Cookies.get('jwt_token'), 'hello')
     return (
       <HomeMainContainer>
         <Header />
         {this.renderBannerSection()}
-        <TrendingSectionContainer>1</TrendingSectionContainer>
+        <TrendingSectionContainer>
+          <SlickHeaderText>Trending</SlickHeaderText>
+          <SlickSection dataList={trendingList} />
+          <SlickHeaderText>Top Rated</SlickHeaderText>
+          <SlickSection dataList={topRatedList} />
+        </TrendingSectionContainer>
+        <Footer />
       </HomeMainContainer>
     )
   }

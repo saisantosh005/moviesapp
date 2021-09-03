@@ -30,7 +30,7 @@ class Header extends Component {
             <LinkText to="/">
               <AppName>MOVIES</AppName>
             </LinkText>
-            <LinkText to="/home">
+            <LinkText to="/">
               <NavText>Home</NavText>
             </LinkText>
             <LinkText to="/popular">

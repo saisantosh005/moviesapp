@@ -4,6 +4,7 @@ const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: black;
 `
 const BannerSectionContainer = styled.div`
   display: flex;
@@ -97,8 +98,32 @@ const BannerSectionButton = styled.div`
 
 const TrendingSectionContainer = styled.div`
   flex-grow: 1;
-  background: black;
+  padding-left: 40px;
+  padding-right: 40px;
+  //   padding-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    width: 70%;
+    padding-left: 102px;
+    padding-right: 101px;
+    padding-top: 32px;
+  }
 `
+const SlickHeaderText = styled.h1`
+  color: #ffffff;
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 26px;
+  margin: 0xp;
+  margin-bottom: 23px;
+  @media screen and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 42px;
+  }
+`
+
 export {
   HomeMainContainer,
   TrendingSectionContainer,
@@ -108,4 +133,5 @@ export {
   BannerMainHeading,
   BannerSectionButton,
   ShadowDiv,
+  SlickHeaderText,
 }
