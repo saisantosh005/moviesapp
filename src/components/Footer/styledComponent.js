@@ -8,8 +8,12 @@ import {
 
 const FooterMainContainer = styled.div`
   text-align: center;
-  padding-top: 80px;
-  padding-bottom: 96px;
+  padding-top: 48px;
+  padding-bottom: 32px;
+  @media screen and (min-width: 768px) {
+    padding-top: 80px;
+    padding-bottom: 64px;
+  }
 `
 
 const IconContainer = styled.div``

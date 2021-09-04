@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import {Component} from 'react'
 
 import Header from '../Header/Header'
@@ -12,8 +13,16 @@ import {
 } from './styledComponents'
 import Pagination from '../Pagination/Pagination'
 
+const apiConstants = {
+  initial: 'INITIAL',
+  inProgress: 'INPROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
+
 class PopularMovieRoute extends Component {
   state = {
+    apiStatus: apiConstants.initial,
     popularMovieList: [],
     pageNumber: 1,
     totalNumber: 0,
@@ -25,6 +34,9 @@ class PopularMovieRoute extends Component {
 
   getPopularMovieList = async () => {
     const {pageNumber} = this.state
+    this.setState({
+      apiStatus: apiConstants.inProgress,
+    })
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=eca1bcc11e31c4033d638b8041720f6f&language=en-US&page=${pageNumber}`
 
     const response = await fetch(url)
@@ -32,7 +44,6 @@ class PopularMovieRoute extends Component {
       const responseData = await response.json()
       const trendingList = responseData.results
       const totalNumber = responseData.total_pages
-      console.log(totalNumber, responseData)
       const responseList = trendingList.map(eachItem => ({
         id: eachItem.id,
         url: `https://image.tmdb.org/t/p/w500/${eachItem.backdrop_path}`,
@@ -40,6 +51,7 @@ class PopularMovieRoute extends Component {
       this.setState({
         popularMovieList: responseList,
         totalNumber,
+        apiStatus: apiConstants.success,
       })
     }
   }
@@ -57,7 +69,7 @@ class PopularMovieRoute extends Component {
   }
 
   decreasePageCount = () => {
-    const {pageNumber, totalNumber} = this.state
+    const {pageNumber} = this.state
     if (pageNumber > 0) {
       this.setState(
         prevState => ({
@@ -70,25 +82,54 @@ class PopularMovieRoute extends Component {
 
   renderCardList = () => {
     const {popularMovieList} = this.state
-    console.log(popularMovieList)
     return popularMovieList.map(eachItem => (
-      <Image src={eachItem.url} key={eachItem.id} />
+      <Link to="/">
+        <Image src={eachItem.url} key={eachItem.id} />
+      </Link>
     ))
   }
 
+  renderLoaderOrList = () => {
+    const {pageNumber, totalNumber, apiStatus} = this.state
+
+    switch (apiStatus) {
+      case apiConstants.success:
+        return (
+          <>
+            <CardsContainer>{this.renderCardList()}</CardsContainer>
+            <Pagination
+              increasePageCount={this.increasePageCount}
+              decreasePageCount={this.decreasePageCount}
+              pageNumber={pageNumber}
+              totalNumber={totalNumber}
+            />
+          </>
+        )
+      case apiConstants.inProgress:
+        return (
+          <div testid="loader">
+            <Loader type="TailSpin" color="#D81F26" height="50" width="50" />
+          </div>
+        )
+      case apiConstants.failure:
+        return <div>Failure</div>
+      default:
+        return null
+    }
+  }
+
   render() {
-    const {pageNumber, totalNumber} = this.state
     return (
       <PopularMovieRouteMainContainer>
-        <Header />
+        <Header
+          showNavIconsBar
+          containerSearchBar
+          containNavLinks
+          showMenuIcon
+          showProfileIcon
+        />
         <CardsAndPaginationContainer>
-          <CardsContainer>{this.renderCardList()}</CardsContainer>{' '}
-          <Pagination
-            increasePageCount={this.increasePageCount}
-            decreasePageCount={this.decreasePageCount}
-            pageNumber={pageNumber}
-            totalNumber={totalNumber}
-          />
+          {this.renderLoaderOrList()}
         </CardsAndPaginationContainer>
         <Footer />
       </PopularMovieRouteMainContainer>

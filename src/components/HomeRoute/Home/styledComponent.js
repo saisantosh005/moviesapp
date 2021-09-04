@@ -3,6 +3,8 @@ import styled from 'styled-components'
 const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border: 2px solid red;
   min-height: 100vh;
   background: black;
 `
@@ -10,8 +12,8 @@ const BannerSectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-image: url('https://res.cloudinary.com/delguky36/image/upload/v1630496082/wp2581913-man-of-steel-wallpaper_1_envfzl.png');
   width: 100%;
+  background-image: url('https://res.cloudinary.com/delguky36/image/upload/v1630496082/wp2581913-man-of-steel-wallpaper_1_envfzl.png');
   height: 427px;
   background-size: cover;
 
@@ -43,7 +45,7 @@ const DetailsContainer = styled.div`
   margin-right: 32px;
   margin-top: 183px;
   @media screen and (min-width: 768px) {
-    width: 50%;
+    width: 40%;
     margin-left: 164px;
     margin-top: 199px;
   }
@@ -97,16 +99,16 @@ const BannerSectionButton = styled.div`
 `
 
 const TrendingSectionContainer = styled.div`
-  flex-grow: 1;
-  padding-left: 40px;
-  padding-right: 40px;
-  //   padding-top: 32px;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 8px;
 
   @media screen and (min-width: 768px) {
-    width: 70%;
-    padding-left: 102px;
-    padding-right: 101px;
-    padding-top: 32px;
+    max-width: 75%;
+    margin-left: 102px;
+    margin-right: 101px;
+    margin-top: 32px;
   }
 `
 const SlickHeaderText = styled.h1`
@@ -116,8 +118,9 @@ const SlickHeaderText = styled.h1`
   font-weight: 600;
   font-size: 20px;
   line-height: 26px;
-  margin: 0xp;
-  margin-bottom: 23px;
+  margin: 0px;
+  margin-bottom: 8px;
+
   @media screen and (min-width: 768px) {
     font-size: 32px;
     line-height: 42px;

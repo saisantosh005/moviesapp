@@ -21,11 +21,13 @@ class Home extends Component {
   state = {
     trendingList: [],
     topRatedList: [],
+    originals: [],
   }
 
   componentDidMount() {
     this.getTrendingList()
     this.getTopRatedList()
+    this.getOriginals()
   }
 
   getTrendingList = async () => {
@@ -63,7 +65,24 @@ class Home extends Component {
     }
   }
 
-  getOriginals = async () => {}
+  getOriginals = async () => {
+    const url = `https://api.themoviedb.org/3/discover/tv?api_key=${token}`
+
+    const response = await fetch(url)
+
+    if (response.ok) {
+      const responseData = await response.json()
+      const trendingList = responseData.results
+
+      const responseList = trendingList.map(eachItem => ({
+        id: eachItem.id,
+        url: eachItem.backdrop_path,
+      }))
+      this.setState({
+        originals: responseList,
+      })
+    }
+  }
 
   renderBannerSection = () => (
     <BannerSectionContainer>
@@ -80,18 +99,27 @@ class Home extends Component {
   )
 
   render() {
-    const {trendingList, topRatedList} = this.state
-    console.log(topRatedList)
-
+    const {trendingList, topRatedList, originals} = this.state
+    console.log(originals)
     return (
       <HomeMainContainer>
-        <Header />
+        <Header
+          absolute
+          showNavIconsBar
+          containerSearchBar
+          containNavLinks
+          showMenuIcon
+          showProfileIcon
+        />
         {this.renderBannerSection()}
         <TrendingSectionContainer>
           <SlickHeaderText>Trending</SlickHeaderText>
           <SlickSection dataList={trendingList} />
           <SlickHeaderText>Top Rated</SlickHeaderText>
           <SlickSection dataList={topRatedList} />
+
+          <SlickHeaderText>Originals</SlickHeaderText>
+          <SlickSection dataList={originals} />
         </TrendingSectionContainer>
         <Footer />
       </HomeMainContainer>

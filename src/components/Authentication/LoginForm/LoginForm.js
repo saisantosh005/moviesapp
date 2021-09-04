@@ -13,6 +13,7 @@ import {
   ButtonContainer,
   Button,
 } from './styledComponent'
+import Header from '../../Header/Header'
 
 class LoginForm extends Component {
   state = {
@@ -39,7 +40,7 @@ class LoginForm extends Component {
     const userDetails = {
       username,
       password,
-      request_token: 'c0955e6cec5de4b804cd808a91be3fdacea38c16',
+      request_token: 'ccdb4373b2794a1b47b4e4884d73eeb5dd06520d',
     }
     const options = {
       method: 'POST',
@@ -69,7 +70,7 @@ class LoginForm extends Component {
     const {username, password, errorMessage} = this.state
     return (
       <LoginFormMainContainer>
-        <FormHeaderName>MOVIES</FormHeaderName>
+        <Header>MOVIES</Header>
         <FormContainer>
           <Form onSubmit={this.onFormSubmit}>
             <FormHeading>Sign in</FormHeading>

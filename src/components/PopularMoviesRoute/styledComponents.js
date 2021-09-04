@@ -11,24 +11,35 @@ const ListContainer = styled.div`
   flex-grow: 1;
 `
 const Image = styled.img`
-  width: 255px;
-  height: 170px;
-  border-radius: 8px;
-  margin-right: 29px;
-  margin-top: 24px;
+  width: 90px;
+  height: 100px;
+  border-radius: 4px;
+  margin: 3px;
+  margin-bottom: 16px;
+  @media screen and (min-width: 768px) {
+    width: 255px;
+    height: 170px;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-bottom: 24px;
+  }
 `
 const CardsAndPaginationContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 32px;
+  padding-left: 32px;
+  padding-right: 32px;
 `
 const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 103px;
-  padding-top: 34;
-  padding-left: 165px;
-  padding-right: 165px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 165px;
+    padding-right: 165px;
+  }
 `
 export {
   PopularMovieRouteMainContainer,
