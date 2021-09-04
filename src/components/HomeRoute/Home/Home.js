@@ -4,17 +4,12 @@ import Cookies from 'js-cookie'
 import Header from '../../Header/Header'
 import {
   HomeMainContainer,
-  BannerSectionContainer,
-  DetailsContainer,
-  BannerDescription,
-  BannerMainHeading,
-  BannerSectionButton,
-  ShadowDiv,
   TrendingSectionContainer,
   SlickHeaderText,
 } from './styledComponent'
 import SlickSection from '../SlickContainer/SlickContainer'
 import Footer from '../../Footer/Footer'
+import BannerSection from '../../BannerSection/BannerSection'
 
 const token = 'eca1bcc11e31c4033d638b8041720f6f'
 class Home extends Component {
@@ -84,23 +79,8 @@ class Home extends Component {
     }
   }
 
-  renderBannerSection = () => (
-    <BannerSectionContainer>
-      <DetailsContainer>
-        <BannerMainHeading>Super Man</BannerMainHeading>
-        <BannerDescription>
-          Superman is a fictional superhero who first appeared in American comic
-          books published by DC Comics.
-        </BannerDescription>
-        <BannerSectionButton>Play</BannerSectionButton>
-      </DetailsContainer>
-      <ShadowDiv />
-    </BannerSectionContainer>
-  )
-
   render() {
     const {trendingList, topRatedList, originals} = this.state
-    console.log(originals)
     return (
       <HomeMainContainer>
         <Header
@@ -111,7 +91,13 @@ class Home extends Component {
           showMenuIcon
           showProfileIcon
         />
-        {this.renderBannerSection()}
+        <BannerSection
+          title="Super Man"
+          description="Superman is a fictional superhero who first appeared in American comic
+          books published by DC Comics."
+          url1="https://res.cloudinary.com/delguky36/image/upload/v1630496082/wp2581913-man-of-steel-wallpaper_1_envfzl.png"
+          url2="https://res.cloudinary.com/delguky36/image/upload/v1630380340/Image_ixm9tv.png"
+        />
         <TrendingSectionContainer>
           <SlickHeaderText>Trending</SlickHeaderText>
           <SlickSection dataList={trendingList} />

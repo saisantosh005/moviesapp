@@ -83,8 +83,8 @@ class PopularMovieRoute extends Component {
   renderCardList = () => {
     const {popularMovieList} = this.state
     return popularMovieList.map(eachItem => (
-      <Link to="/">
-        <Image src={eachItem.url} key={eachItem.id} />
+      <Link to={`/movie/${eachItem.id}`} key={eachItem.id}>
+        <Image src={eachItem.url} />
       </Link>
     ))
   }

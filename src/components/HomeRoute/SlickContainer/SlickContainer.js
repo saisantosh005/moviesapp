@@ -1,4 +1,6 @@
+import {Link} from 'react-router-dom'
 import Slider from 'react-slick'
+
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 
 import {SlickMainContainer, Image} from './styledComponents'
@@ -7,7 +9,11 @@ const SlickSection = props => {
   const {dataList} = props
   const renderSlickList = dataList.map(each => {
     const url = `https://image.tmdb.org/t/p/w500/${each.url}`
-    return <Image src={url} key={each.id} />
+    return (
+      <Link to={`/movie/${each.id}`}>
+        <Image src={url} key={each.id} />
+      </Link>
+    )
   })
 
   const settings = {

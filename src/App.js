@@ -6,6 +6,7 @@ import './App.css'
 import NotFound from './components/NotFound/NotFound'
 import PopularMovieRoute from './components/PopularMoviesRoute/PopularMovieRoute'
 import Account from './components/Account/Account'
+import MovieDetails from './components/MovieDetailsRoute/MovieDetails/MovieDetails'
 
 const App = () => (
   <div>
@@ -15,6 +16,8 @@ const App = () => (
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/popular" component={PopularMovieRoute} />
         <ProtectedRoute exact path="/account" component={Account} />
+        <ProtectedRoute exact path="/movie/:id" component={MovieDetails} />
+
         <Route path="/not-found" component={NotFound} />
         <Redirect to="not-found" />
       </Switch>
