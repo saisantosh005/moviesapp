@@ -4,7 +4,6 @@ const HomeMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid red;
   min-height: 100vh;
   background: black;
 `

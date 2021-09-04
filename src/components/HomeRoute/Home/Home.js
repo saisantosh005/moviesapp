@@ -95,8 +95,8 @@ class Home extends Component {
           title="Super Man"
           description="Superman is a fictional superhero who first appeared in American comic
           books published by DC Comics."
-          url1="https://res.cloudinary.com/delguky36/image/upload/v1630496082/wp2581913-man-of-steel-wallpaper_1_envfzl.png"
-          url2="https://res.cloudinary.com/delguky36/image/upload/v1630380340/Image_ixm9tv.png"
+          url2="https://res.cloudinary.com/delguky36/image/upload/v1630496082/wp2581913-man-of-steel-wallpaper_1_envfzl.png"
+          url1="https://res.cloudinary.com/delguky36/image/upload/v1630380340/Image_ixm9tv.png"
         />
         <TrendingSectionContainer>
           <SlickHeaderText>Trending</SlickHeaderText>

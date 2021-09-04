@@ -17,7 +17,10 @@ const Image = styled.img`
   margin: 3px;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
-    width: 255px;
+    flex-shrink: 1;
+    // width: 255px;
+    min-width: 220px;
+    max-width: 260px;
     height: 170px;
     border-radius: 8px;
     margin-right: 10px;
@@ -31,6 +34,7 @@ const CardsAndPaginationContainer = styled.div`
   padding-bottom: 32px;
   padding-left: 32px;
   padding-right: 32px;
+  border: 2px solid red;
 `
 const CardsContainer = styled.div`
   display: flex;

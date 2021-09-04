@@ -5,15 +5,13 @@ const BannerSectionContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
-  background-image: url(${props =>
-    props.url1}); //url('https://res.cloudinary.com/delguky36/image/upload/v1630496082/wp2581913-man-of-steel-wallpaper_1_envfzl.png');
-  height: 427px;
+  background-image: url(${props => props.url2});
   background-size: cover;
+  height: 427px;
 
   @media screen and (min-width: 768px) {
     height: 605px;
-    background-image: ${props =>
-      props.url2}; // url('https://res.cloudinary.com/delguky36/image/upload/v1630380340/Image_ixm9tv.png');
+    background-image: url(${props => props.url1});
     background-size: cover;
   }
 `

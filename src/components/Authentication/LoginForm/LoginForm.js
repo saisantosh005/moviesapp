@@ -40,7 +40,7 @@ class LoginForm extends Component {
     const userDetails = {
       username,
       password,
-      request_token: 'ccdb4373b2794a1b47b4e4884d73eeb5dd06520d',
+      request_token: 'cca6b2a9a6aa2fd687430a935b0455f3a2e7eb24',
     }
     const options = {
       method: 'POST',
